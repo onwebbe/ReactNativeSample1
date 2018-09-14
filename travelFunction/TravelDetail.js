@@ -6,7 +6,7 @@
  */
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, FlatList, Image, TouchableHighlight} from 'react-native';
+import {Platform, StyleSheet, Text, View, FlatList, Image} from 'react-native';
 import Icon from "react-native-vector-icons/Feather"
 import {themeing} from '../themeingStyle/themeing';
 import topMenuConfig from '../FunctionTopMenu'
@@ -18,9 +18,9 @@ const instructions = Platform.select({
 });
 
 type Props = {};
-export class TravelList extends Component<Props> {
+export class TravelDetail extends Component<Props> {
   static navigationOptions = ({navigation}) => {
-    return topMenuConfig(navigation, '旅行列表', false, true)
+    return topMenuConfig(navigation, '旅行内容', false, true)
     //   return {
     //     title: '旅行列表',
     //     headerStyle: themeing.pageHeader,
@@ -38,31 +38,16 @@ export class TravelList extends Component<Props> {
   };
   constructor(props) {
     super(props);
-    this.goDetail = this.goDetail.bind(this);
-    
-    this.state = {
-        data: [{
-          key: '1',
-          title: 'title1',
-          content: 'a'
-        },{
-          key: '2',
-            title: 'title2',
-            content: 'b'
-          },{
-            key: '3',
-            title: 'title3',
-            content: 'c'
-          },{
-            key: '4',
-            title: 'title4',
-            content: 'd'
-          }]
-    }
+    this.state = {};
   }
   render() {
     return (
       <View style={[styles.container, themeing.functionContainerBackground]}>
+        <View style={[styles.travelDetailHead]}>
+            <Text size="18">目的地：澳洲 - 澳大利亚</Text>
+            <Text size="12">出发日期：2019-02-02  回程日期：2019-02-12  共 10 天</Text>
+            <Text size="18">计划人数：6人 - 2大人 2老人 2儿童</Text>
+        </View>
         <FlatList
           data={this.state.data}
           renderItem={this.renderListItem} style={{width: '100%', flex:1}}></FlatList>
@@ -70,9 +55,7 @@ export class TravelList extends Component<Props> {
     );
   }
   renderListItem({item}) {
-    var that = this;
     return (
-      <TouchableHighlight onPress={ () => that.goDetail()}>
       <View style={[styles.listItemContainer, themeing.cardColor, {alignItems: 'center', alignContent: 'stretch', flexWrap: 'nowrap'}]}>
         <Image style={styles.accountSelectionImage} source={require('../images/IMG_20180224_094324.jpg')}/>
         <View style={[{flexDirection: 'column', marginLeft: 10, alignSelf: 'flex-start', flexShrink: 1, marginRight: 15}, themeing.fontColor]}>
@@ -89,17 +72,20 @@ export class TravelList extends Component<Props> {
         <View style={{textAlign: 'right', position: 'absolute', right: 0}}>
             <Icon name="chevron-right" size={25} style={{alignSelf: 'flex-end'}} color="white"></Icon>
         </View>
+        
       </View>
-      </TouchableHighlight>
     );
   }
-  goDetail() {
+  addNewAccount() {
     const navigation  = this.props.navigation;
-    navigation.navigate('TravelDetail');
+    navigation.navigate('AddNewAccount');
   }
 }
 
 const styles = StyleSheet.create({
+  travelDetailHead: {
+
+  },
   container: {
     flex: 1,
     alignItems: 'stretch',
