@@ -39,6 +39,7 @@ export class TravelList extends Component<Props> {
   constructor(props) {
     super(props);
     this.goDetail = this.goDetail.bind(this);
+    this.renderListItem = this.renderListItem.bind(this);
     
     this.state = {
         data: [{
@@ -70,9 +71,8 @@ export class TravelList extends Component<Props> {
     );
   }
   renderListItem({item}) {
-    var that = this;
     return (
-      <TouchableHighlight onPress={ () => that.goDetail()}>
+      <TouchableHighlight onPress={ () => this.goDetail() }>
       <View style={[styles.listItemContainer, themeing.cardColor, {alignItems: 'center', alignContent: 'stretch', flexWrap: 'nowrap'}]}>
         <Image style={styles.accountSelectionImage} source={require('../images/IMG_20180224_094324.jpg')}/>
         <View style={[{flexDirection: 'column', marginLeft: 10, alignSelf: 'flex-start', flexShrink: 1, marginRight: 15}, themeing.fontColor]}>

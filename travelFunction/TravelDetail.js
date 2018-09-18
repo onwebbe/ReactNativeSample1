@@ -38,19 +38,38 @@ export class TravelDetail extends Component<Props> {
   };
   constructor(props) {
     super(props);
-    this.state = {};
+    this.renderListItem = this.renderListItem.bind(this);
+    this.state = {
+      data: [{
+        key: '1',
+        title: 'title1',
+        content: 'a'
+      },{
+        key: '2',
+          title: 'title2',
+          content: 'b'
+        },{
+          key: '3',
+          title: 'title3',
+          content: 'c'
+        },{
+          key: '4',
+          title: 'title4',
+          content: 'd'
+        }]
+    };
   }
   render() {
     return (
       <View style={[styles.container, themeing.functionContainerBackground]}>
-        <View style={[styles.travelDetailHead]}>
-            <Text size="18">目的地：澳洲 - 澳大利亚</Text>
-            <Text size="12">出发日期：2019-02-02  回程日期：2019-02-12  共 10 天</Text>
-            <Text size="18">计划人数：6人 - 2大人 2老人 2儿童</Text>
+        <View style={[styles.travelDetailHead, themeing.bodyCardColor, {paddingLeft: 15, paddingRight: 15, paddingBottom: 10}]}>
+            <Text style={[themeing.fontColor, {fontSize: 18, paddingTop: 10}]}>目的地：澳洲 - 澳大利亚</Text>
+            <Text style={[themeing.fontColor, {fontSize: 14, paddingTop: 10}]}>出发日期：2019-02-02 至 2019-02-12 (共 10 天)</Text>
+            <Text style={[themeing.fontColor, {fontSize: 14, paddingTop: 10}]}>计划人数：共6人 包括 2大人 2老人 2儿童</Text>
         </View>
         <FlatList
           data={this.state.data}
-          renderItem={this.renderListItem} style={{width: '100%', flex:1}}></FlatList>
+          renderItem={this.renderListItem} style={{width: '100%', flex:1, paddingTop: 5}}></FlatList>
       </View>
     );
   }
@@ -59,15 +78,9 @@ export class TravelDetail extends Component<Props> {
       <View style={[styles.listItemContainer, themeing.cardColor, {alignItems: 'center', alignContent: 'stretch', flexWrap: 'nowrap'}]}>
         <Image style={styles.accountSelectionImage} source={require('../images/IMG_20180224_094324.jpg')}/>
         <View style={[{flexDirection: 'column', marginLeft: 10, alignSelf: 'flex-start', flexShrink: 1, marginRight: 15}, themeing.fontColor]}>
-            <View style={[{flex:1, flexDirection: 'row', marginTop: 5}]}>
-              <Text style={[themeing.fontColor, {fontSize: 18}]}>澳洲 - 澳大利亚</Text>
-              <Text style={[themeing.fontColor, {fontSize: 18}]}>（计划中）</Text>
-            </View>
-            <View style={[{flex:1, flexDirection: 'row', marginTop: 5}]}>
-              <Text style={[themeing.fontColor]}>2019.02.02 - 2019.02.12</Text>
-              <Text style={{color: '#fffe73'}}>（共10天）</Text>
-            </View>
-            <Text style={[themeing.fontColor, {marginTop: 5, flexWrap: 'wrap', lineHeight: 20, overflow: 'hidden'}]}>悉尼，布里斯班，墨尔本，大洋路，企鹅归巢，考拉，袋鼠悉尼，布里斯班，墨尔本，大洋路，企鹅归巢，考拉，袋鼠</Text>
+          <Text size="18" style={[themeing.fontColor, {marginTop: 15}]}>第一天 - 2019.02.02 - 飞机上漂泊</Text>
+          <Text style={[themeing.fontColor, {marginTop: 5}]}>上海 - 悉尼</Text>
+          <Text style={[themeing.fontColor, {marginTop: 5, flexWrap: 'wrap', lineHeight: 20, overflow: 'hidden'}]}>悉尼，布里斯班，墨尔本，大洋路，企鹅归巢，考拉，袋鼠悉尼，布里斯班，墨尔本，大洋路，企鹅归巢，考拉，袋鼠</Text>
         </View>
         <View style={{textAlign: 'right', position: 'absolute', right: 0}}>
             <Icon name="chevron-right" size={25} style={{alignSelf: 'flex-end'}} color="white"></Icon>
@@ -84,7 +97,8 @@ export class TravelDetail extends Component<Props> {
 
 const styles = StyleSheet.create({
   travelDetailHead: {
-
+    borderColor: 'grey',
+    borderBottomWidth: 1
   },
   container: {
     flex: 1,

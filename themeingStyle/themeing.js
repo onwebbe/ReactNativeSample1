@@ -32,6 +32,10 @@ export const themeing = StyleSheet.create({
       // backgroundColor: 'rgba(94, 37, 128, 0.9)'
       backgroundColor: 'rgba(255, 255, 255, 0.2)'
     },
+    bodyCardColor: {
+      // backgroundColor: 'rgba(94, 37, 128, 0.9)'
+      backgroundColor: 'rgba(229, 103, 177, 0.5)'
+    },
     functionContainerBackground: {
       backgroundColor: '#47036F'
     },
