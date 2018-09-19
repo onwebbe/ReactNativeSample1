@@ -20,7 +20,7 @@ const instructions = Platform.select({
 type Props = {};
 export class TravelDetail extends Component<Props> {
   static navigationOptions = ({navigation}) => {
-    return topMenuConfig(navigation, '旅行内容', false, true)
+    return topMenuConfig(navigation, '旅行内容', true, true)
     //   return {
     //     title: '旅行列表',
     //     headerStyle: themeing.pageHeader,
@@ -39,6 +39,7 @@ export class TravelDetail extends Component<Props> {
   constructor(props) {
     super(props);
     this.renderListItem = this.renderListItem.bind(this);
+    this.getListItemStyle = this.getListItemStyle.bind(this);
     this.state = {
       data: [{
         key: '1',
@@ -73,14 +74,21 @@ export class TravelDetail extends Component<Props> {
       </View>
     );
   }
-  renderListItem({item}) {
+  getListItemStyle(item) {
+    if (item.index % 2 == 0) {
+      return themeing.cardColorEven;
+    } else {
+      return themeing.cardColorOdd;
+    }
+  }
+  renderListItem(item) {
     return (
-      <View style={[styles.listItemContainer, themeing.cardColor, {alignItems: 'center', alignContent: 'stretch', flexWrap: 'nowrap'}]}>
+      <View style={[this.getListItemStyle(item), styles.listItemContainer, {alignItems: 'center', alignContent: 'stretch', flexWrap: 'nowrap'}]}>
         <Image style={styles.accountSelectionImage} source={require('../images/IMG_20180224_094324.jpg')}/>
         <View style={[{flexDirection: 'column', marginLeft: 10, alignSelf: 'flex-start', flexShrink: 1, marginRight: 15}, themeing.fontColor]}>
-          <Text size="18" style={[themeing.fontColor, {marginTop: 15}]}>第一天 - 2019.02.02 - 飞机上漂泊</Text>
+          <Text size="18" style={[themeing.fontColor, {marginTop: 15}]}>{item.index}第一天 - 2019.02.02 - 飞机上漂泊</Text>
           <Text style={[themeing.fontColor, {marginTop: 5}]}>上海 - 悉尼</Text>
-          <Text style={[themeing.fontColor, {marginTop: 5, flexWrap: 'wrap', lineHeight: 20, overflow: 'hidden'}]}>悉尼，布里斯班，墨尔本，大洋路，企鹅归巢，考拉，袋鼠悉尼，布里斯班，墨尔本，大洋路，企鹅归巢，考拉，袋鼠</Text>
+          <Text style={[themeing.fontColor, {marginTop: 5, flexWrap: 'wrap', lineHeight: 20, overflow: 'hidden'}]}>上海浦东机场 -> 马尼拉机场 -> 悉尼机场</Text>
         </View>
         <View style={{textAlign: 'right', position: 'absolute', right: 0}}>
             <Icon name="chevron-right" size={25} style={{alignSelf: 'flex-end'}} color="white"></Icon>
@@ -88,10 +96,6 @@ export class TravelDetail extends Component<Props> {
         
       </View>
     );
-  }
-  addNewAccount() {
-    const navigation  = this.props.navigation;
-    navigation.navigate('AddNewAccount');
   }
 }
 
