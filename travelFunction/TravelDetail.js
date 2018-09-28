@@ -6,7 +6,7 @@
  */
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, FlatList, Image} from 'react-native';
+import {Platform, StyleSheet, Text, View, FlatList, Image, TouchableHighlight} from 'react-native';
 import Icon from "react-native-vector-icons/Feather"
 import {themeing} from '../themeingStyle/themeing';
 import topMenuConfig from '../FunctionTopMenu'
@@ -40,6 +40,7 @@ export class TravelDetail extends Component<Props> {
     super(props);
     this.renderListItem = this.renderListItem.bind(this);
     this.getListItemStyle = this.getListItemStyle.bind(this);
+    this.viewTravelDay = this.viewTravelDay.bind(this);
     this.state = {
       data: [{
         key: '1',
@@ -83,19 +84,25 @@ export class TravelDetail extends Component<Props> {
   }
   renderListItem(item) {
     return (
+      <TouchableHighlight onPress={ () => this.viewTravelDay() }>
       <View style={[this.getListItemStyle(item), styles.listItemContainer, {alignItems: 'center', alignContent: 'stretch', flexWrap: 'nowrap'}]}>
         <Image style={styles.accountSelectionImage} source={require('../images/IMG_20180224_094324.jpg')}/>
         <View style={[{flexDirection: 'column', marginLeft: 10, alignSelf: 'flex-start', flexShrink: 1, marginRight: 15}, themeing.fontColor]}>
-          <Text size="18" style={[themeing.fontColor, {marginTop: 15}]}>{item.index}第一天 - 2019.02.02 - 飞机上漂泊</Text>
+          <Text size="18" style={[themeing.fontColor, {marginTop: 15}]}>{item.index}第一天 - 2019.02.02</Text>
           <Text style={[themeing.fontColor, {marginTop: 5}]}>上海 - 悉尼</Text>
-          <Text style={[themeing.fontColor, {marginTop: 5, flexWrap: 'wrap', lineHeight: 20, overflow: 'hidden'}]}>上海浦东机场 -> 马尼拉机场 -> 悉尼机场</Text>
+          <Text style={[themeing.fontColor, {marginTop: 5, flexWrap: 'wrap', lineHeight: 20, overflow: 'hidden'}]}>上海浦东机场 - 马尼拉机场 - 悉尼机场</Text>
         </View>
         <View style={{textAlign: 'right', position: 'absolute', right: 0}}>
             <Icon name="chevron-right" size={25} style={{alignSelf: 'flex-end'}} color="white"></Icon>
         </View>
         
       </View>
+      </TouchableHighlight>
     );
+  }
+  viewTravelDay() {
+    const navigation  = this.props.navigation;
+    navigation.navigate('TravelDay');
   }
 }
 

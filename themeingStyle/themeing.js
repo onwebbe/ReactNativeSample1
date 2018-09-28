@@ -22,6 +22,12 @@ export const themeing = StyleSheet.create({
       width: '100%',
       color: 'white'
     },
+    pageBodySecond: {
+      backgroundColor: '#5E2580'
+    },
+    pageHeaderSecond: {
+      backgroundColor: '#47036F'
+    },
     fontColor: {
       color: 'white'
     },
@@ -43,6 +49,13 @@ export const themeing = StyleSheet.create({
     bodyCardColor: {
       // backgroundColor: 'rgba(94, 37, 128, 0.9)'
       backgroundColor: 'rgba(229, 103, 177, 0.5)'
+    },
+    pageContainerSecond: {
+      backgroundColor: '#5E2580'
+    },
+    bodyCardColorSecond: {
+      // backgroundColor: 'rgba(94, 37, 128, 0.9)'
+      backgroundColor: '#619A00'
     },
     functionContainerBackground: {
       backgroundColor: '#47036F'

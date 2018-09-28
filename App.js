@@ -17,6 +17,9 @@ import {TravelList} from './travelFunction/TravelList';
 import {UserInfo} from './travelFunction/UserInfo';
 import {ChangePassword} from './travelFunction/ChangePassword';
 import {TravelDetail} from './travelFunction/TravelDetail'
+import {TravelDay} from './travelFunction/TravelDay'
+import {TravelItemTrafficBus} from './travelFunction/TravelItemTrafficBus'
+import {TravelItemAttraction} from './travelFunction/TravelItemAttraction'
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -32,7 +35,10 @@ const functionRoute = createStackNavigator(
     TravelList,
     UserInfo,
     ChangePassword,
-    TravelDetail
+    TravelDetail,
+    TravelDay,
+    TravelItemTrafficBus,
+    TravelItemAttraction
   }, {
     initialRouteName: 'AddNewAccount',
   });
